@@ -1,26 +1,31 @@
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import PropTypes from 'prop-types';
+import { useCategories } from '../hooks/useCategories';
 
-const fetchCategories = async () => {
-  try {
-    const { data } = await axios.get(
-      'https://fakestoreapi.com/products/categories'
-    );
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-};
+function SkeletonFilters() {
+  return (
+    <aside className='w-1/4 p-4 bg-white pb-4 animate-pulse'>
+      <div className='mb-4'>
+        <div className='h-4 bg-gray-200 w-1/3 mb-4 rounded' />
+        <div className='h-10 bg-gray-200 rounded-md' />
+      </div>
+
+      <div className='mb-4'>
+        <div className='h-4 bg-gray-200 w-1/3 mb-4 rounded' />
+        <div className='flex flex-wrap gap-2'>
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className='h-8 bg-gray-200 w-20 rounded-full' />
+          ))}
+        </div>
+      </div>
+    </aside>
+  );
+}
 
 export default function Filters({ filters, onFilter }) {
-  const { data, error, isLoading } = useQuery({
-    queryKey: ['categories'],
-    queryFn: fetchCategories,
-  });
+  const { data, error, isLoading } = useCategories();
 
-  if (isLoading) return <div>Loading products...</div>;
-  if (error) return <div>Error when fetching the products</div>;
+  if (isLoading) return <SkeletonFilters />;
+  if (error) return <div>Error when fetching the categories</div>;
 
   return (
     <aside className='w-1/4 p-4 bg-white pb-4'>
