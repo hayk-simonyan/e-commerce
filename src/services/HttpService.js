@@ -12,4 +12,14 @@ export class HttpService {
       throw error;
     }
   }
+
+  async post(url, body, config = {}) {
+    try {
+      const { data } = await this.client.post(url, body, config);
+      return data;
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  }
 }

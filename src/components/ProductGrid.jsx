@@ -46,6 +46,11 @@ ProductGrid.propTypes = {
       title: PropTypes.string.isRequired,
       price: PropTypes.number.isRequired,
       image: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      rating: PropTypes.shape({
+        rate: PropTypes.number.isRequired,
+        count: PropTypes.number.isRequired,
+      }),
     })
   ).isRequired,
   loading: PropTypes.bool,
