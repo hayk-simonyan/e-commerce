@@ -33,7 +33,7 @@ A modern e-commerce web application built with React and Vite, featuring a robus
 1. Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/hayk-simonyan/e-commerce.git
 cd ecommerce
 ```
 
